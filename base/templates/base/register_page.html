@@ -1,0 +1,24 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+{% load tailwind_filters %}
+
+{% block title %}Register{% endblock title %}
+
+{% block body %}
+<div class="flex items-center justify-center mt-4 mb-2 mx-8">
+    <form class="w-full md:w-1/2 lg:w-1/3 pb-2" method="post" enctype="multipart/form-data">
+        <legend class="text-3xl font-bold border-b border-gray-500 pb-1 mb-2">Register User</legend>
+        {% csrf_token %}
+        {{form|crispy}}
+        <div class="flex items-end justify-between mt-2 pt-2 border-t border-gray-500">
+            <button class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 rounded" type="submit">Register</button>
+            <div class="flex items-center">
+                <span class="">Already have an account?</span>
+                <a href="{% url 'base:login' %}" class="text-blue-700 mx-1 cursor-pointer">Login</a>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock body %}

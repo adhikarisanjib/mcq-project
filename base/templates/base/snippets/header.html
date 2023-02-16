@@ -1,0 +1,29 @@
+<nav class="flex flex-col md:flex-row md:justify-between px-4 py-3 bg-gray-400 shadow-md">
+    <ul class="flex flex-col items-center md:flex-row mx-2">
+        <li class="mx-2"><a class="cursor-pointer text-xl font-bold" href="{% url 'base:home' %}">Logo</a></li>
+    </ul>
+    <ul class="flex flex-col items-center md:flex-row mx-2">
+        {% if request.user.is_authenticated %}
+        <li class="mx-2">
+            <form method="get" onsubmit="return executeQuery();">
+                {% csrf_token %}
+                <input class="px-2 py-2 rounded-sm outline-none" type="text" placeholder="search accounts" name="user_query" id="id_search">
+            </form>
+        </li>
+        <li class="mx-2"><a class="cursor-pointer" href="{% url 'base:profile' %}">Profile</a></li>
+        <li class="mx-2"><a class="cursor-pointer" href="{% url 'base:logout' %}">Logout</a></li>
+        {% else %}
+        <li class="mx-2"><a class="cursor-pointer" href="{% url 'base:login' %}">Login</a></li>
+        <li class="mx-2"><a class="cursor-pointer" href="{% url 'base:register' %}">Register</a></li>
+        {% endif %}
+    </ul>
+</nav>
+
+<script type="text/javascript">
+    function executeQuery() {
+        var query = ""
+        query = document.getElementById('id_search').value;
+        window.location.replace("{% url 'base:search-profile' %}?user_query=" + query)
+        return false
+    }
+</script>

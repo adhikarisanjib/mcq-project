@@ -1,0 +1,22 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+{% load tailwind_filters %}
+
+{% block title %}Users{% endblock title %}
+
+{% block body %}
+<div class="flex items-center justify-center mt-4 mb-2">
+    {% if users %}
+        {% for user in users %}
+        <div class="mx-2 my-2 px-6 py-6 flex flex-col items-center shadow-md">
+            <img class="w-32 h-32 rounded-full" src="{{ user.avatar.url }}" alt="profile picture">
+            <h5 class="mt-2">{{ user.email }}</h5>
+            <h5 class="mt-2">{{ user.name }}</h5>
+            <a class="mt-2 px-3 py-2 bg-blue-500 hover:bg-blue-700 rounded" href="{% url 'base:profile' user_id=user.id %}">Show</a>
+        </div>
+        {% endfor %}
+    {% endif %}
+</div>
+{% endblock body %}

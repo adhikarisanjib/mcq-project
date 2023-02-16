@@ -1,0 +1,12 @@
+{
+  "name": "custom-user",
+  "version": "1.0.0",
+  "description": "Django custom authentication system",
+  "main": "base.js",
+  "scripts": {},
+  "author": "Sanjib",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.2.4"
+  }
+}

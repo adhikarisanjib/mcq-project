@@ -1,0 +1,10 @@
+<div class="flex items-center justify-center bg-gray-300">
+    {% if messages %}
+    {% for message in messages %}
+    <div class="flex items-center justify-center py-2">
+        <span class="{{ message.tags }}">{{ message|safe }}</span>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+</div>

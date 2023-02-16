@@ -1,0 +1,14 @@
+{% extends 'mcqapp/base.html' %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+{% load tailwind_filters %}
+
+{% load account socialaccount %}
+{% get_providers as socialaccount_providers %}
+
+{% block title %}{{ action }} MCQ{% endblock title %}
+
+{% block body %}
+<div class="flex justify-center mt-4">Home Page</div>
+{% endblock body %}

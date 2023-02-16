@@ -1,0 +1,47 @@
+{% extends 'mcqapp/base.html' %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+{% load tailwind_filters %}
+
+{% load account socialaccount %}
+{% get_providers as socialaccount_providers %}
+
+{% block title %}{{ action }} MCQ{% endblock title %}
+
+{% block body %}
+<div class="flex flex-col items-center justify-center mt-4 mb-2">
+    <h1 class="px-4 py-1 text-2xl font-bold border-b border-gray-500">Questions List</h1>
+    <div class="mt-4 py-1 flex justify-between">
+        <form method="post">
+            {% csrf_token %}
+            <input class="px-2 py-1 rounded" name="search" placeholder="search by question" type="text">
+            <button class="mx-2 px-2 py-1 rounded bg-blue-500 hover:bg-blue-700 text-white" type="submit">search</button>
+        </form>
+        <a href="{% url 'mcqapp:mcq-create' %}" class="mx-2 px-2 py-1 rounded bg-blue-500 hover:bg-blue-700 text-white">Add New</a>
+    </div>
+    {% if questions %}
+    <table class="mt-4">
+        <thead class="border-t-2 border-b-2 border-gray-500">
+                <th class="px-2 py-2">Question</th>
+                <th class="px-2 py-2">Answer</th>
+                <th class="px-2 py-2">Actions</th>
+        </thead>
+        <tbody class="">
+            {% for question in questions %}
+            <tr>
+                <td class="px-2 py-1">{{ question.question }}</td>
+                <td class="px-2 py-1">{{ question.answer }}</td>
+                <td class="px-2 py-1">
+                    <a class="mx-2 text-blue-500 hover:text-blue-700" href="{% url 'mcqapp:mcq-update' id=question.id %}">Update</a>
+                    <a class="mx-2 text-red-500 hover:text-red-700" disabled href="{% url 'mcqapp:mcq-delete' id=question.id %}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="mt-4">No Records Found</div>
+    {% endif %}
+</div>
+{% endblock body %}

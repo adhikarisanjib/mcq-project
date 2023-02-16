@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{% endblock title %}
+
+{% block html %}
+
+{% include 'base/snippets/header.html' %}
+{% include 'base/snippets/message.html' %}
+
+<div class="flex">
+    {% include 'mcqapp/snippets/sidebar.html' %}
+    <div class="flex-grow justify-center">
+        {% block body %}{% endblock body %}
+    </div>
+</div>
+
+{% endblock html %}

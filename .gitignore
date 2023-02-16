@@ -1,0 +1,10 @@
+# Python Files
+
+/venv
+/__pycache__
+
+**/**.pyc
+
+# JS files
+
+/node_modules
